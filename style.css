@@ -12,7 +12,7 @@ body {
 
 /* navigation menu */
 nav {
-    background: rgb(0, 253, 76);
+    background: rgb(0, 225, 255);
     margin: 0 auto;
     display: flex;
     padding: 10px;
@@ -22,7 +22,7 @@ nav {
 h1 {
     display: flex;
     align-items: center;
-    color: white;
+    color: rgb(255, 0, 0);
     flex: 1;
     margin: 0;
 }
@@ -41,12 +41,16 @@ h1 {
 
 a {
     text-decoration: none;
-    color: #fff;
+    color: #ff0000;
+}
+#link{
+    color:#eee;
+    text-decoration: underline;
 }
 
 /* main container area beneath menu */
 main {
-    background: rgb(245, 238, 219);
+    background: rgb(0, 0, 0);
     display: flex;
     margin-top: 20px;
 }
@@ -67,7 +71,7 @@ main {
 
 /* interests section styles */
 #interests {
-    border: 4px silver ridge;
+    border: 4px rgb(25, 0, 255) solid;
     padding: 8px;
     margin-top: 20px;
 }
