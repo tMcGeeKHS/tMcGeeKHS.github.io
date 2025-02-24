@@ -98,8 +98,8 @@
 			// }
 
 			function randomXYPos() {
-				var randWidth = Math.floor(Math.random * boardWidth);
-				var randHeight = Math.floor(Math.random * boardHeight);
+				var randWidth = Math.floor(Math.random() * boardWidth);
+				var randHeight = Math.floor(Math.random() * boardHeight);
 				positionX = randWidth;
 				positionY = randHeight;
 			};
@@ -130,8 +130,8 @@
 			*/
 			function handleBoxClick() {
 				randomXYPos();
-				// positionX = randWidth;
-				// positionY = randHeight;
+				//positionX = randWidth;
+				//positionY = randHeight;
 				// positionX = 0;
 				// positionY = 0;
 				points++;
