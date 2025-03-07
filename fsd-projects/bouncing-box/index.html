@@ -53,11 +53,11 @@
 			var boardWidth = board.width();	// the maximum X-Coordinate of the screen
 			var boardHeight = jQuery(window).height();
 			// Every 50 milliseconds, call the update Function (see below)
-			setInterval(update, 50);
+			var interval = setInterval(update, 50);
 
 			// Every time the box is clicked, call the handleBoxClick Function (see below)
 			box.on('click', handleBoxClick);
-
+			board.on('click', handleMisClick);
 			// moves the Box to a new position on the screen along the X-Axis
 			function moveBoxTo(newPositionX, newPositionY) {
 				box.css("left", newPositionX);
@@ -81,29 +81,29 @@
 			var points = 0;
 			var speed = 10;
 			var speedY = 10;
-			var randNum = Math.random() * 100;
-			// var colorStr = "rgb(50, 25, 250)";
-			// box.css("background-color", colorStr);
+			var colorStr;
+			var misClicks = 0;
 			/* 
 			This Function will be called 20 times/second. Each time it is called,
 			it should move the Box to a new location. If the box drifts off the screen
 			turn it around! 
 			*/
+			function randNum(t) {
+			var randNum = Math.floor(Math.random() * t);
+			return randNum;
+			}
 
-			// function getRandomColor() {
-			// var randRedNum = Math.floor(randNum * 255);
-			// var randGreenNum = Math.floor(randNum * 255);
-			// var randBlueNum = Math.floor(randNum * 255);
-			// colorStr = 'rgb(' + randRedNum + ',' + randGreenNum + ',' + randBlueNum + ')';
-			// }
+			function getRandomColor() {
+			colorStr = 'rgb(' + randNum(255) + ',' + randNum(255) + ',' + randNum(255) + ')';
+			return colorStr.toString(8);
+			}
 
 			function randomXYPos() {
 				var randWidth = Math.floor(Math.random() * boardWidth);
 				var randHeight = Math.floor(Math.random() * boardHeight);
 				positionX = randWidth;
 				positionY = randHeight;
-			};
-
+			}
 
 			function update() {
 				moveBoxTo(positionX, positionY);
@@ -115,7 +115,7 @@
 				else if (positionX < 0) {
 					speed *= -1;
 				}
-				if (positionY > boardHeight) {
+				if (positionY > boardHeight + 70) {
 					speedY *= -1;
 				}
 				else if (positionY < 0) {
@@ -130,18 +130,33 @@
 			*/
 			function handleBoxClick() {
 				randomXYPos();
-				//positionX = randWidth;
-				//positionY = randHeight;
-				// positionX = 0;
-				// positionY = 0;
 				points++;
+				misClicks -= 1;
 				changeBoxText(points);
 				speed = 3 * points + 10;
 				speedY = 3 * points + 10;
-				// getRandomColor();
-				// box.css("background-color", colorStr);
+				// speed = 1;
+				// speedY = 1;
+				// if (points % 3 === 0) {
+					speed++
+				// }
+				if (points % 5 === 0) {
+					box.css("background-color", getRandomColor());
+				}
+				
 			};
 
+			function handleMisClick() {
+				misClicks++;
+				if (misClicks === 10) {
+					endGame();
+				}
+
+			}
+
+			function endGame() {
+  				clearInterval(interval);
+			}
 		
 
 
