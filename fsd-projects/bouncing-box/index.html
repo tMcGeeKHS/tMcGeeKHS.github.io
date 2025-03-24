@@ -83,6 +83,7 @@
 			var speedY = 10;
 			var colorStr;
 			var misClicks = 0;
+			var gameEnd = false;
 			/* 
 			This Function will be called 20 times/second. Each time it is called,
 			it should move the Box to a new location. If the box drifts off the screen
@@ -129,20 +130,19 @@
 			the left side of the screen.
 			*/
 			function handleBoxClick() {
-				randomXYPos();
-				points++;
-				misClicks -= 1;
-				changeBoxText(points);
-				speed = 3 * points + 10;
-				speedY = 3 * points + 10;
-				// speed = 1;
-				// speedY = 1;
-				// if (points % 3 === 0) {
-					//speed++
-				// }
-				if (points % 5 === 0) {
-					box.css("background-color", getRandomColor());
+				if (!gameEnd) {
+					randomXYPos();
+					points++;
+					misClicks -= 1;
+					changeBoxText(points);
+					speed = 3 * points + 10;
+					speedY = 3 * points + 10;
+					if (points % 5 === 0) {
+						box.css("background-color", getRandomColor());
+					}
 				}
+
+				
 				
 			};
 
@@ -155,6 +155,7 @@
 			}
 
 			function endGame() {
+				gameEnd = true;
   				clearInterval(interval);
 			}
 		
